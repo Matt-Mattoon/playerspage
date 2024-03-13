@@ -1,16 +1,14 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask_bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt #type:ignore
 bcrypt = Bcrypt(app)
-from flask import render_template,redirect,session,request,flash
+from flask import render_template,redirect,session,request,flash #type:ignore
 from flask_app.controllers  import controllers_cpers
 from flask_app.models.models_user import User
-from flask_app.models import models_user
 
 @app.route('/')
 def loginreg():
     return render_template ('loginreg.html')
-
 
 @app.route('/register' , methods = ['post'])
 def register():
@@ -31,10 +29,9 @@ def register():
     session['user_id'] = user_id
     return redirect (f'/cplrs/{session["user_id"]}')
     
-    
 @app.route('/login', methods=['POST'])
 def login():
-    # see if the first_name provided exists in the database
+    # see if the email provided exists in the database
     data = { "email" : request.form["email"]}
     user_in_db = User.get_by_email(data)
     # user is not registered in the db

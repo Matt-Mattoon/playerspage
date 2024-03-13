@@ -8,8 +8,8 @@ class Attribute:
         self.top_strength = data['top_strength']
         self.bottom_strength = data['bottom_strength']
         self.user_id = data['user_id']
-        
-        
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
         
     @classmethod
     def create(cls,data):
@@ -27,9 +27,4 @@ class Attribute:
         for attribute in results:
             attributes.append(attribute)
         return attributes
-    
-
-        
-        
-        
     
