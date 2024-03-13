@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='showplayer.css') }}">
+
+</head>
+<body>
+<div class="set">
+
+    <a href="/create">create myplayer</a>
+    {%for player in attribute_set%}
+    <p>name:{{player.name}}</p>
+    <p>position:{{player.position}}</p>
+    <p>school:{{player.school}}</p>
+    <img src="{{ url_for('static', filename='{{player.profile_picture}}') }}">
+    <div class="bottomhf"><p>top strength:{{player.top_strength}}</p>
+        <p> bottom strength:{{player.bottom_strength}} </p>
+        <p>speed:{{player.speed}}</p>
+    </div>
+    
+    {%endfor%}
+    
+</div>
+
+</body>
+</html>
