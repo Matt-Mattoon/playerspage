@@ -1,9 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask import render_template,redirect,session,request,flash
-from flask_app.models import models_user
+from flask import render_template,redirect,session,request,flash #type:ignore
 from flask_app.models.models_user import User
-from flask_app.controllers import controllers_cpers
 from flask_app.models.models_attribute import Attribute
 
 @app.route('/create')

@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
+from flask import flash #type:ignore
 import re	# the regex module
 # create a regular expression object that we'll use later   
 r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
@@ -12,6 +12,8 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
         
     @classmethod
     def save(cls , data):
@@ -31,11 +33,11 @@ class User:
     @staticmethod
     def validate_user(users):
         is_valid = True
-        if len(users['first_name']) < 2 or len(users['first_name']) > 50 :
+        if len(users['first_name']) < 2 or len(users['first_name']) > 21 :
             flash("first_name must be between 1 and 21  characters.")
             is_valid = False
-        if len(users['email']) < 2 or len(users['email']) > 50 :
-            flash("Email must be in email format.")
+        if not EMAIL_REGEX.match(users['email']):
+            flash('Invalid Email.')
             is_valid = False
         if len(users['password']) < 1:
             flash("Please enter a password")
