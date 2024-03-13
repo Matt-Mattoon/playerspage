@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/create/new" method="post">
+<label for="top_strength">Bench press
+    <select name="top_strength" >
+        <option value="60">less than 135lbs</option>
+        <option value="65">135lbs</option>
+        <option value="70">185lbs</option>
+        <option value="82">225lbs</option>
+        <option value="85">250lbs</option>
+        <option value="87">350lbs</option>
+        <option value="90">400lbs</option>
+        <option value="93">450lbs</option>
+        </select>
+    </label>
+
+    <label for="bottom_strength">Squat
+        <select name="bottom_strength" >
+            <option value="50">0-100lbs</option>
+            <option value="70">125lbs</option>
+            <option value="80">225</option>
+            <option value="85">300lbs</option>
+            <option value="86">400lbs</option>
+            <option value="87">500lbs</option>
+            <option value="90">650lbs</option>
+            <option value="96">720lbs</option>
+            <option value="99">750lbs</option>
+
+        </select>
+    </label>
+
+
+
+
+<label for="speed">what is your 40 yard dash time</label>
+<input type="number" name="speed" step="any">
+    
+
+<input type="hidden" name="user_id" value="{{session['user_id']}}">
+    <input type="submit">
+
+
+
+
+    </form>
+</body>
+</html>

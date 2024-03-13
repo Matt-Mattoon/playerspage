@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginreg.css') }}">
+</head>
+<h1>log in</h1>
+{%with messages = get_flashed_messages()%}
+{%if messages%}
+{%for message in messages%}
+{{message}}
+{%endfor%}
+{%endif%}
+{%endwith%}
+<div class="forms">
+
+<form action="/login" method="post">
+    <label for="email">email</label>
+    <input type="text" name="email">
+    <label for="password">password</label>
+    <input type="text" name="password">
+    <input type="submit">
+</form>
+<body>
+    <h1>register</h1>
+    
+    <form action="/register" method="post">
+        <label for="first_name">first name</label>
+        <input type="text" name="first_name">
+        <label for="last_name">last name</label>
+        <input type="text" name="last_name">
+        <label for="email">email</label>
+        <input type="text" name="email">
+        <label for="password">password</label>
+        <input type="text" name="password">
+        <input type="hidden" name="user_id" value="session['user_id']">
+        <input type="submit">
+
+    </form>
+
+   
+
+
+    
+</body>
+</html>
