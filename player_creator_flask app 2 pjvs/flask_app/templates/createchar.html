@@ -8,39 +8,20 @@
 </head>
 <body>
     <form action="/create/new" method="post">
-<label for="top_strength">Bench press
-    <select name="top_strength" >
-        <option value="60">less than 135lbs</option>
-        <option value="65">135lbs</option>
-        <option value="70">185lbs</option>
-        <option value="82">225lbs</option>
-        <option value="85">250lbs</option>
-        <option value="87">350lbs</option>
-        <option value="90">400lbs</option>
-        <option value="93">450lbs</option>
-        </select>
-    </label>
-
-    <label for="bottom_strength">Squat
-        <select name="bottom_strength" >
-            <option value="50">0-100lbs</option>
-            <option value="70">125lbs</option>
-            <option value="80">225</option>
-            <option value="85">300lbs</option>
-            <option value="86">400lbs</option>
-            <option value="87">500lbs</option>
-            <option value="90">650lbs</option>
-            <option value="96">720lbs</option>
-            <option value="99">750lbs</option>
-
-        </select>
-    </label>
-
-
-
-
-<label for="speed">what is your 40 yard dash time</label>
-<input type="number" name="speed" step="any">
+    <label for="profile picture">profile picture </label>
+    <input type="file"  name="profile_picture">
+    <label for="name">name</label>
+    <input type="text" name="name">
+    <label for="position">position</label>
+    <input type="text" name="position">
+    <label for="school">school</label>
+    <input type="text" name="school" >
+    <label for="top_strength">bench press</label>
+    <input type="number" name="top_strength">
+    <label for="bottom strength">squat</label>
+    <input type="number" name="bottom_strength">
+    <label for="speed">what is your 40 yard dash time</label>
+    <input type="number" name="speed" step="any">
     
 
 <input type="hidden" name="user_id" value="{{session['user_id']}}">

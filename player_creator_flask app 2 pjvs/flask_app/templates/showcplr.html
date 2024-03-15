@@ -9,17 +9,22 @@
 
 </head>
 <body>
-    <img src="{{ url_for('static', filename='fbodyimg.jpeg') }}">
-    <img src="{{ url_for('static', filename='bbuilder_leg.jpeg') }}">
-    <img src="{{ url_for('static', filename='upperbodimg.jpeg') }}">
+<div class="set">
 
-<a href="/create">create myplayer</a>
+    <a href="/create">create myplayer</a>
     {%for player in attribute_set%}
-    <p>top strength{{player.top_strength}}</p>
-    <p> bottom strength{{player.bottom_strength}} </p>
-    <p>speed{{player.speed}}</p>
+    <p>name:{{player.name}}</p>
+    <p>position:{{player.position}}</p>
+    <p>school:{{player.school}}</p>
+    <img src="{{ url_for('static', filename='{{player.profile_picture}}') }}">
+    <div class="bottomhf"><p>top strength:{{player.top_strength}}</p>
+        <p> bottom strength:{{player.bottom_strength}} </p>
+        <p>speed:{{player.speed}}</p>
+    </div>
+    
     {%endfor%}
-
+    
+</div>
 
 </body>
 </html>
