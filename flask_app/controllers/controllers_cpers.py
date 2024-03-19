@@ -1,7 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
-from flask import render_template,redirect,session,request,flash #type:ignore
-from flask_app.models.models_user import User
+from flask import render_template,redirect,session,request,flash
+from flask_app.models import models_user
+from flask_app.controllers import controllers_cpers
 from flask_app.models.models_attribute import Attribute
 
 # create player - get form
@@ -12,9 +13,10 @@ def createchar():
 # create player - post
 @app.route('/create/new' , methods=['post'])
 def solidify_characters():
-    data = {'name': request.form['name'],
-            'position': request.form['position'],
-            'school': request.form['school'],
+
+    data = {'name':request.form['name'],
+            'school':request.form['school'],
+            'position':request.form['position'],
             'top_strength':request.form['top_strength'],
             'bottom_strength':request.form['bottom_strength'],
             'speed':request.form['speed'],

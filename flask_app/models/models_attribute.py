@@ -17,7 +17,10 @@ class Attribute:
         
     @classmethod
     def create(cls, data):
-        query = 'insert into attributes (name ,school , top_strength, bottom_strength, speed, position, user_id) values (%(name)s, %(school)s ,%(top_strength)s ,%(bottom_strength)s ,%(speed)s ,%(position)s ,%(user_id)s)'
+        query = '''
+        insert into attributes (name, school, position, top_strength, bottom_strength, speed, user_id) 
+        values (%(name)s, %(school)s, %(position)s, %(top_strength)s, %(bottom_strength)s, %(speed)s, %(user_id)s)
+        '''
         return connectToMySQL(db).query_db(query ,  data)
     
     @classmethod
