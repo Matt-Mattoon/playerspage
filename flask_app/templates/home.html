@@ -7,7 +7,7 @@
     <title>PlayersPage - Home</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
@@ -21,17 +21,22 @@
         </button>
             
     </nav>
-    <div class="container pt-5">
+    
+    <div class="container mt-5 pt-3">
+        
+        <!-- Delete successful message after delete player route? I couldnt get flash to work. Ideas? -->
         
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Page</h4>
         <ul class="list-group list-group-flush">
-            {% if players %}
-                {% for player in players %}
-                    <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
-                {% endfor %}
-            {% else %}
-                <p class="bg-info">No players found</p>
-            {% endif %}
+            
+                {% if players %}
+                    {% for player in players %}
+                        <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <p class="bg-info">No players found</p>
+                {% endif %}
+            
         </ul>
 
     </div>

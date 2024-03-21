@@ -65,3 +65,13 @@ def update_player(user_id):
     }
     Attribute.update(data)
     return redirect(f'/playerspage/{session['user_id']}')
+
+# Delete player - post
+@app.route('/playerspage/<int:user_id>/delete')
+def delete_player(user_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    elif user_id != session['user_id']: # protect against db calls from URL
+        return redirect('/')
+    Attribute.delete(user_id)
+    return redirect(f'/playerspage/home')

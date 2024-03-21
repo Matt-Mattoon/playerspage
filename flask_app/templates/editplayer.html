@@ -8,7 +8,7 @@
     <title>PlayerPage - Edit Player</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
@@ -39,6 +39,10 @@
             <input type="hidden" name="user_id" value="{{session['user_id']}}">
             <input type="submit">
         </form>
+    </div>
+    <div class="p-3 d-flex bg-secondary">
+        <h4 class="justify-content-center border-bottom border-danger border-2">Danger Zone</h4>
+        <a class="justify-content-center btn btn-outline-danger" href="/playerspage/{{session['user_id']}}/delete" role="button">Delete Player</a>
     </div>
     
 </body>

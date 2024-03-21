@@ -1,5 +1,6 @@
 db = 'athletes'
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash #type:ignore
 
 class Attribute:
     def __init__(self , data):
@@ -17,16 +18,16 @@ class Attribute:
         
     @classmethod
     def create(cls, data):
-        query = 'insert into attributes (name ,school , top_strength, bottom_strength, speed, position, user_id) values (%(name)s, %(school)s ,%(top_strength)s ,%(bottom_strength)s ,%(speed)s ,%(position)s ,%(user_id)s)'
-        return connectToMySQL(db).query_db(query ,  data)
+        query = 'insert into attributes (name ,school, top_strength, bottom_strength, speed, position, user_id) values (%(name)s, %(school)s, %(top_strength)s, %(bottom_strength)s, %(speed)s, %(position)s, %(user_id)s)'
+        return connectToMySQL(db).query_db(query, data)
     
     @classmethod
-    def get_one(cls ,data):
+    def get_one(cls, data):
         query = """
                 SELECT * FROM attributes 
                 Where user_id = %(id)s
                 """
-        results = connectToMySQL(db).query_db(query ,  data)
+        results = connectToMySQL(db).query_db(query, data)
         print(results)
         if results:
             attributes = cls(results[0])
@@ -46,6 +47,12 @@ class Attribute:
         return
     
     @classmethod
-    def update(cls ,data):
+    def update(cls, data):
         query = 'UPDATE attributes SET name = %(name)s, school = %(school)s, top_strength = %(top_strength)s, bottom_strength = %(bottom_strength)s, speed = %(speed)s, position = %(position)s WHERE id = %(id)s'
         return connectToMySQL(db).query_db(query ,data)
+    
+    @classmethod
+    def delete(cls, user_id):
+        data = {'user_id' : user_id}
+        query = 'DELETE FROM attributes WHERE user_id = %(user_id)s'
+        return connectToMySQL(db).query_db(query, data)
