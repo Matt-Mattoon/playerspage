@@ -49,7 +49,7 @@ def show_player(id):
 def edit_player():
     if 'user_id' not in session:
         return render_template('loginreg.html')
-    return render_template('editplayer.html')
+    return render_template('editplayer.html' , attribute_set = attribute_set)
 
 # Edit player - post
 @app.route('/playerspage/update/<int:user_id>', methods=['POST'])
@@ -66,4 +66,4 @@ def update_player(user_id):
         'id' : request.form['user_id']
     }
     Attribute.update(data)
-    return redirect(f'/playerspage/{session['user_id']}')
+    return redirect(f'/playerspage/{session["user_id"]}')
