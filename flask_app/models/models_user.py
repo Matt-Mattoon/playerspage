@@ -47,14 +47,15 @@ class User:
     
     @staticmethod
     def validate_login(data):
+        
         is_valid = True
         #check email format
         if not EMAIL_REGEX.match(data['email']):
-            flash('Invalid Email')
+            flash('Invalid Email', 'login')
             is_valid = False
         #check password for required length, number included, capital included
         if not len(data['password']) > 7 or re.search('[0-9]', data['password']) is None or re.search('[A-Z]', data['password']) is None:
-            flash('Password must contain at least 8 characters, a number, and a capital letter.')
+            flash('Password must contain at least 8 characters, a number, and a capital letter.', 'login')
             is_valid = False
         return is_valid
     
@@ -65,21 +66,21 @@ class User:
         results = connectToMySQL(db).query_db(query, data)
         if results:
             if len(results) >= 1:
-                flash('Email already in use.')
+                flash('Email already in use.', 'register')
                 is_valid = False
         if not EMAIL_REGEX.match(data['email']):
-            flash('Invalid Email.')
+            flash('Invalid Email.', 'register')
             is_valid = False
         if not len(data['first_name']) >= 2 or re.search(NAME_REGEX, data['first_name']):
-            flash('First name must be at least 2 characters and can only contain letters')
+            flash('First name must be at least 2 characters and can only contain letters', 'register')
             is_valid = False
         if not len(data['last_name']) >= 2 or re.search(NAME_REGEX, data['last_name']):
-            flash('Last name must be at least 2 characters and can only contain letters')
+            flash('Last name must be at least 2 characters and can only contain letters', 'register')
             is_valid = False
         if not len(data['password']) > 7 or re.search('[0-9]', data['password']) is None or re.search('[A-Z]', data['password']) is None:
-            flash('Password must contain at least 8 characters, a number, and a capital letter.')
+            flash('Password must contain at least 8 characters, a number, and a capital letter.', 'register')
             is_valid = False
         if data['password'] != data['confirm_password']:
-            flash('password does not match')
+            flash('password does not match', 'register')
             is_valid = False
         return is_valid
