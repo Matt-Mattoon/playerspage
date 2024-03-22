@@ -25,12 +25,12 @@ class Attribute:
         return connectToMySQL(db).query_db(query ,  data)
     
     @classmethod
-    def get_one(cls, data):
+    def get_one(cls ,data):
         query = """
                 SELECT * FROM attributes 
                 Where user_id = %(id)s
                 """
-        results = connectToMySQL(db).query_db(query, data)
+        results = connectToMySQL(db).query_db(query ,  data)
         print(results)
         attributes = []
         for attribute in results:
