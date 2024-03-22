@@ -49,6 +49,7 @@ def show_player(id):
 def edit_player():
     if 'user_id' not in session:
         return render_template('loginreg.html')
+    attribute_set = Attribute.get_one(data)
     return render_template('editplayer.html' , attribute_set = attribute_set)
 
 # Edit player - post
