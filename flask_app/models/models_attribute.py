@@ -32,10 +32,10 @@ class Attribute:
                 """
         results = connectToMySQL(db).query_db(query, data)
         print(results)
-        if results:
-            attributes = cls(results[0])
-            return attributes
-        return
+        attributes = []
+        for attribute in results:
+            attributes.append(attribute)
+        return results
     
     @classmethod
     def get_all(cls): # create a list of Attribute instances and return it
