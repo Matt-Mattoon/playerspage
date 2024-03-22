@@ -45,10 +45,11 @@ def show_player(id):
     return render_template('showcplr.html', attributes = attributes)
 
 # Edit player - get form
-@app.route('/playerspage/update')
-def edit_player():
+@app.route('/playerspage/edit/<int:id>')
+def edit_player(id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
+    data = {'id':id}
     attribute_set = Attribute.get_one(data)
     return render_template('editplayer.html' , attribute_set = attribute_set)
 
