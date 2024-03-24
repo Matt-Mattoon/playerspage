@@ -25,20 +25,18 @@
     </nav>
     <div class="set mt-5 pt-5">
         
-        {% if attributes %}
-            {% if attributes.user_id == session['user_id'] %}
+        {% if player %}
+            <p>Name: {{player.name}}</p>
+            <p>Position: {{player.position}}</p>
+            <p>School: {{player.school}}</p>
+            <div class="bottomhf">
+                <p>Top Strength: {{player.top_strength}}</p>
+                <p>Bottom Strength: {{player.bottom_strength}} </p>
+                <p>Speed: {{player.speed}}</p>
+            </div>
+            {% if player.user_id == session['user_id'] %}
                 <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark">Edit Player</a>
             {% endif %}
-            {%for attributes in attributes%}
-                <p>Name: {{attributes.name}}</p>
-                <p>Position: {{attributes.position}}</p>
-                <p>School: {{attributes.school}}</p>
-                <div class="bottomhf">
-                    <p>Top Strength: {{attributes.top_strength}}</p>
-                    <p>Bottom Strength: {{attributes.bottom_strength}} </p>
-                    <p>Speed: {{attributes.speed}}</p>
-                </div>
-            {% endfor %}
         {% else%}
             <a href="/create" class="p-2 text-dark">Create my player</a>
         {% endif %}

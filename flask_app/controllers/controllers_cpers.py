@@ -41,8 +41,8 @@ def show_player(id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
     data = {'id':id}
-    attributes = Attribute.get_one(data)
-    return render_template('showcplr.html', attributes = attributes)
+    player = Attribute.get_one(data)
+    return render_template('showcplr.html', player = player)
 
 # Edit player - get form
 @app.route('/playerspage/edit/<int:id>')
@@ -51,8 +51,8 @@ def edit_player(id):
         return render_template('loginreg.html')
     data = {'id':id}
 
-    attribute_set = Attribute.get_one(data)
-    return render_template('editplayer.html' , attribute_set = attribute_set)
+    player = Attribute.get_one(data)
+    return render_template('editplayer.html' , player = player)
 
 # Edit player - post
 @app.route('/playerspage/update/<int:user_id>', methods=['POST'])
@@ -66,7 +66,7 @@ def update_player(user_id):
         'top_strength' : request.form['top_strength'],
         'bottom_strength' : request.form['bottom_strength'],
         'speed' : request.form['speed'],
-        'id' : request.form['user_id']
+        'id' : user_id
     }
     Attribute.update(data)
     return redirect (f'/playerspage/{request.form["user_id"]}')

@@ -32,10 +32,9 @@ class Attribute:
                 """
         results = connectToMySQL(db).query_db(query, data)
         print(results)
-        attributes = []
-        for attribute in results:
-            attributes.append(attribute)
-        return results
+        player = cls(results[0])
+        print(player)
+        return player
     
     @classmethod
     def get_all(cls): # create a list of Attribute instances and return it
@@ -51,7 +50,7 @@ class Attribute:
     
     @classmethod
     def update(cls, data):
-        query = 'UPDATE attributes SET name = %(name)s, school = %(school)s, top_strength = %(top_strength)s, bottom_strength = %(bottom_strength)s, speed = %(speed)s, position = %(position)s WHERE id = %(id)s'
+        query = 'UPDATE attributes SET name = %(name)s, school = %(school)s, top_strength = %(top_strength)s, bottom_strength = %(bottom_strength)s, speed = %(speed)s, position = %(position)s WHERE user_id = %(id)s'
         return connectToMySQL(db).query_db(query, data)
     
     @classmethod
