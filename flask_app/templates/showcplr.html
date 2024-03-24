@@ -23,18 +23,30 @@
         </button>
             
     </nav>
+
+    <!-- football background -->
+    <!-- <style>
+        body {
+            background-image: url('/static/img/field.png');
+            background-size: cover; 
+            height: 100vh;
+            background-position: center;/* Adjust as needed */
+            /* Additional CSS properties */
+        }
+    </style> -->
+    
     <div class="set mt-5 pt-5">
         {% if attributes.user_id  == session['user_id'] %}
-            <a href='/playerspage/update' class="text-dark ">Edit Player</a>
+            <a href='/playerspage/update' class="text-dark">Edit Player</a>
         {% endif %}
         {% if attributes %}
                 <p>Name: {{attributes.name}}</p>
                 <p>Position: {{attributes.position}}</p>
                 <p>School: {{attributes.school}}</p>
                 <div class="bottomhf">
-                    <p>Top Strength: {{attributes.top_strength}}</p>
-                    <p>Bottom Strength: {{attributes.bottom_strength}} </p>
-                    <p>Speed: {{attributes.speed}}</p>
+                    <p>Top Strength: {{attributes.top_strength}} Lbs. &#127947;</p>
+                    <p>Bottom Strength: {{attributes.bottom_strength}} Lbs. &#127947;</p>
+                    <p>Speed: {{attributes.speed}} &#127939;</p>
                 </div>
         {% else %}
             <a href="/create" class="text-dark">Create my player</a>

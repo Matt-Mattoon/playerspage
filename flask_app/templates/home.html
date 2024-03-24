@@ -22,14 +22,27 @@
         </button>
             
     </nav>
-    
+    <style>
+        body {
+            background-image: url('/static/img/field.png');
+            background-size: cover; 
+            height: 100vh;
+            background-size: cover;
+            background-position: center;/* Adjust as needed */
+        }
+        li:hover {
+        background-color: lightgray; /* Change the background color on hover */
+        border: 1px solid black; /* Add a border on hover */
+        /* Add any other styles you want to apply on hover */
+    }
+    </style>
     <div class="container pt-5">
         
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Page</h4>
-        <ul class="list-group list-group-flush">
+        <ul >
             {% if players %}
                 {% for player in players %}
-                    <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
+                    <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a> {{player.school}}</li>
                 {% endfor %}
             {% else %}
                 <p class="bg-info">No players found</p>
