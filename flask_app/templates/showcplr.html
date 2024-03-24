@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"><!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/showplayer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/loginreg.css') }}">
     <title>PlayersPage</title>
 </head>
 <body>
@@ -25,8 +25,11 @@
     </nav>
     <div class="set mt-5 pt-5">
         
-            <a href="/playerspage/edit/{{session['user_id']}}">Edit Player</a>
-        {%for attributes in attributes%}
+        {% if attributes %}
+            {% if attributes.user_id == session['user_id'] %}
+                <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark">Edit Player</a>
+            {% endif %}
+            {%for attributes in attributes%}
                 <p>Name: {{attributes.name}}</p>
                 <p>Position: {{attributes.position}}</p>
                 <p>School: {{attributes.school}}</p>
@@ -35,9 +38,26 @@
                     <p>Bottom Strength: {{attributes.bottom_strength}} </p>
                     <p>Speed: {{attributes.speed}}</p>
                 </div>
-        {%endfor%}
-            <a href="/create">Create my player</a>
+            {% endfor %}
+        {% else%}
+            <a href="/create" class="text-dark">Create my player</a>
+        {% endif %}
+        
+      
+        
+      
+        
+      
+                
+
+        
      
+
+        
+      
+            <a href="/create">Create my player</a>
+      
+
     </div>
 
 </body>
