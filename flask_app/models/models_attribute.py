@@ -3,11 +3,11 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash #type:ignore
 
 class Attribute:
-    def __init__(self , data):
+    def __init__(self, data):
         self.id = data['id']
-        self.name=data['name']
+        self.name = data['name']
         self.position = data['position']
-        self.school=data['school']
+        self.school = data['school']
         self.speed = data['speed']
         self.top_strength = data['top_strength']
         self.bottom_strength = data['bottom_strength']
@@ -22,15 +22,15 @@ class Attribute:
         insert into attributes (name, school, position, top_strength, bottom_strength, speed, user_id) 
         values (%(name)s, %(school)s, %(position)s, %(top_strength)s, %(bottom_strength)s, %(speed)s, %(user_id)s)
         '''
-        return connectToMySQL(db).query_db(query ,  data)
+        return connectToMySQL(db).query_db(query, data)
     
     @classmethod
-    def get_one(cls ,data):
-        query = """select * from attributes 
-        join users ON attributes.id = attributes.user_id
-        Where attributes.id = %(id)s
-        """
-        results = connectToMySQL(db).query_db(query ,  data)
+    def get_one(cls, data):
+        query = """
+                SELECT * FROM attributes
+                WHERE user_id = %(id)s
+                """
+        results = connectToMySQL(db).query_db(query, data)
         print(results)
         attributes = []
         for attribute in results:
@@ -52,7 +52,7 @@ class Attribute:
     @classmethod
     def update(cls, data):
         query = 'UPDATE attributes SET name = %(name)s, school = %(school)s, top_strength = %(top_strength)s, bottom_strength = %(bottom_strength)s, speed = %(speed)s, position = %(position)s WHERE id = %(id)s'
-        return connectToMySQL(db).query_db(query ,data)
+        return connectToMySQL(db).query_db(query, data)
     
     @classmethod
     def delete(cls, user_id):
