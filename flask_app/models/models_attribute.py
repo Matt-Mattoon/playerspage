@@ -26,10 +26,10 @@ class Attribute:
     
     @classmethod
     def get_one(cls ,data):
-        query = """
-                SELECT * FROM attributes 
-                Where user_id = %(id)s
-                """
+        query = """select * from attributes 
+        join users ON attributes.id = attributes.user_id
+        Where attributes.id = %(id)s
+        """
         results = connectToMySQL(db).query_db(query ,  data)
         print(results)
         attributes = []

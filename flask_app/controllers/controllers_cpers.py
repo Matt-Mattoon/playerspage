@@ -68,7 +68,7 @@ def update_player(user_id):
         'id' : request.form['user_id']
     }
     Attribute.update(data)
-    return redirect(f'/playerspage/{session['user_id']}')
+    return redirect (f'/playerspage/{request.form["user_id"]}')
 
 # Delete player - post
 @app.route('/playerspage/<int:user_id>/delete')
