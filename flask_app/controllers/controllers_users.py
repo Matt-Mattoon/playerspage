@@ -34,7 +34,7 @@ def register():
     }
     user_id = User.save(data)
     session['user_id'] = user_id
-    return redirect ('/') # since 'user_id' is now in session: redirect to home
+    return redirect ('/playerspage/home') # since 'user_id' is now in session: redirect to home
     
 @app.route('/login', methods=['POST'])
 def login():

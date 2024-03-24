@@ -9,7 +9,7 @@
     <title>PlayerPage - Edit Player</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
@@ -25,25 +25,29 @@
     </nav>
     <div class="container mt-5 pt-5">
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
-            {%for initial_attribute in attribute_set%}
-            <label for="name">Name</label>
-            <input type="text" name="name" value='{{initial_attribute.first_name}}'>
-            <label for="position">Position</label>
-            <input type="text" name="position" value="{{initial_attribute.position}}">
-            <label for="school">School</label>
-            <input type="text" name="school" value="{{initial_attribute.school}}">
-            <label for="top_strength">Bench Press</label>
-            <input type="number" name="top_strength" value="{{initial_attribute.top_strength}}">
-            <label for="bottom strength">Squat</label>
-            <input type="number" name="bottom_strength" value="{{initial_attribute.top_strength}}">
+            
+            <label for="name">name</label>
+            <input type="text" name="name" value='{{player.name}}'>
+            <label for="position">position</label>
+            <input type="text" name="position" value="{{player.position}}">
+            <label for="school">school</label>
+            <input type="text" name="school" value="{{player.school}}">
+            <label for="top_strength">bench press</label>
+            <input type="number" name="top_strength" value="{{player.top_strength}}">
+            <label for="bottom strength">squat</label>
+            <input type="number" name="bottom_strength" value="{{player.top_strength}}">
             <label for="speed">what is your 40 yard dash time</label>
-            <input type="number" name="speed" step="any">
+            <input type="number" name="speed" step="any" value="{{player.speed}}">
             
         
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
-        {%endfor%}
+        
             <input type="submit">
         </form>
+    </div>
+    <div class="p-3 d-flex bg-secondary">
+        <h4 class="justify-content-center border-bottom border-danger border-2">Danger Zone</h4>
+        <a class="justify-content-center btn btn-outline-danger" href="/playerspage/{{session['user_id']}}/delete" role="button">Delete Player</a>
     </div>
     
 </body>

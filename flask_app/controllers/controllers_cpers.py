@@ -41,16 +41,18 @@ def show_player(id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
     data = {'id':id}
-    attributes = Attribute.get_one(data)
-    return render_template('showcplr.html', attributes = attributes)
+    player = Attribute.get_one(data)
+    return render_template('showcplr.html', player = player)
 
 # Edit player - get form
-@app.route('/playerspage/update')
-def edit_player():
+@app.route('/playerspage/edit/<int:id>')
+def edit_player(id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
-    attribute_set = Attribute.get_one(data)
-    return render_template('editplayer.html' , attribute_set = attribute_set)
+    data = {'id':id}
+
+    player = Attribute.get_one(data)
+    return render_template('editplayer.html' , player = player)
 
 # Edit player - post
 @app.route('/playerspage/update/<int:user_id>', methods=['POST'])
@@ -64,33 +66,18 @@ def update_player(user_id):
         'top_strength' : request.form['top_strength'],
         'bottom_strength' : request.form['bottom_strength'],
         'speed' : request.form['speed'],
-        'id' : request.form['user_id']
+        'id' : user_id
     }
     Attribute.update(data)
+    return redirect (f'/playerspage/{request.form["user_id"]}')
+
+# Delete player - post
+@app.route('/playerspage/<int:user_id>/delete')
+def delete_player(user_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    elif user_id != session['user_id']: # protect against db calls from URL
+        return redirect('/')
+    Attribute.delete(user_id)
     return redirect(f'/playerspage/{session['user_id']}')
 
-
-
-# # Edit player - get form
-# @app.route('/playerspage/update')
-# def edit_player():
-#     if 'user_id' not in session:
-#         return render_template('loginreg.html')
-#     return render_template('editplayer.html' , attribute_set = attribute_set)
-
-# # Edit player - post
-# @app.route('/playerspage/update/<int:user_id>', methods=['POST'])
-# def update_player(user_id):
-#     if 'user_id' not in session:
-#         return render_template('loginreg.html')
-#     data = {
-#         'name' : request.form['name'],
-#         'position' : request.form['position'],
-#         'school' : request.form['school'],
-#         'top_strength' : request.form['top_strength'],
-#         'bottom_strength' : request.form['bottom_strength'],
-#         'speed' : request.form['speed'],
-#         'id' : request.form['user_id']
-#     }
-#     Attribute.update(data)
-#     return redirect(f'/playerspage/{session["user_id"]}')
