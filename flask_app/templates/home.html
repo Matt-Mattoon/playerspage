@@ -8,34 +8,43 @@
     <title>PlayersPage - Home</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
-        
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
             <div class="navbar-nav ms-auto">
-                <a href="/playerspage/{{session['user_id']}}" class="nav-link">Profile</a>
                 <a href="/logout" class="nav-link">logout</a>
+                <a href="/playerspage/{{session['user_id']}}" class="nav-link">Profile</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav_collapse" aria-controls="nav_collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-            
     </nav>
-    
+    <style>
+        body {
+            background-image: url('/static/img/field.png');
+            background-size: cover;
+            height: 100vh;
+            background-position: center; /* Adjust as needed */
+        }
+        li:hover {
+            background-color: lightgray; /* Change the background color on hover */
+            border: 1px solid black; /* Add a border on hover */
+            /* Add any other styles you want to apply on hover */
+        }
+    </style>
     <div class="container pt-5">
-        
+        <!-- Delete successful message after delete player route? I couldnt get flash to work. Ideas? -->
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Page</h4>
         <ul class="list-group list-group-flush">
-            {% if players %}
-                {% for player in players %}
-                    <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
-                {% endfor %}
-            {% else %}
-                <p class="bg-info">No players found</p>
-            {% endif %}
+                {% if players %}
+                    {% for player in players %}
+                        <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <p class="bg-info">No players found</p>
+                {% endif %}
         </ul>
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

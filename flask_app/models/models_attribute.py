@@ -1,5 +1,6 @@
 db = 'athletes'
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash #type:ignore
 
 class Attribute:
     def __init__(self , data):
@@ -25,16 +26,16 @@ class Attribute:
     
     @classmethod
     def get_one(cls ,data):
-        query = """
-                SELECT * FROM attributes 
-                Where user_id = %(id)s
-                """
+        query = """select * from attributes 
+        join users ON attributes.id = attributes.user_id
+        Where attributes.id = %(id)s
+        """
         results = connectToMySQL(db).query_db(query ,  data)
         print(results)
-        if results:
-            attributes = cls(results[0])
-            return attributes
-        return
+        attributes = []
+        for attribute in results:
+            attributes.append(attribute)
+        return results
     
     @classmethod
     def get_all(cls): # create a list of Attribute instances and return it
@@ -49,6 +50,12 @@ class Attribute:
         return
     
     @classmethod
-    def update(cls ,data):
+    def update(cls, data):
         query = 'UPDATE attributes SET name = %(name)s, school = %(school)s, top_strength = %(top_strength)s, bottom_strength = %(bottom_strength)s, speed = %(speed)s, position = %(position)s WHERE id = %(id)s'
         return connectToMySQL(db).query_db(query ,data)
+    
+    @classmethod
+    def delete(cls, user_id):
+        data = {'user_id' : user_id}
+        query = 'DELETE FROM attributes WHERE user_id = %(user_id)s'
+        return connectToMySQL(db).query_db(query, data)

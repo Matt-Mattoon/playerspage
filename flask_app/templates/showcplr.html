@@ -9,12 +9,12 @@
     <title>PlayersPage</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
             <div class="navbar-nav ms-auto">
-                <a href="/playerspage/{{session['user_id']}}" class="nav-link">Profile</a>
+                <a href="/playerspage/home" class="nav-link">Profile</a>
                 <a href="/logout" class="nav-link">logout</a>
             </div>
         </div>
@@ -24,10 +24,12 @@
             
     </nav>
     <div class="set mt-5 pt-5">
-        {% if attributes.user_id  == session['user_id'] %}
-            <a href='/playerspage/update' class="text-dark ">Edit Player</a>
-        {% endif %}
+        
         {% if attributes %}
+            {% if attributes.user_id == session['user_id'] %}
+                <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark">Edit Player</a>
+            {% endif %}
+            {%for attributes in attributes%}
                 <p>Name: {{attributes.name}}</p>
                 <p>Position: {{attributes.position}}</p>
                 <p>School: {{attributes.school}}</p>
@@ -36,9 +38,26 @@
                     <p>Bottom Strength: {{attributes.bottom_strength}} </p>
                     <p>Speed: {{attributes.speed}}</p>
                 </div>
-        {% else %}
+            {% endfor %}
+        {% else%}
             <a href="/create" class="text-dark">Create my player</a>
         {% endif %}
+        
+      
+        
+      
+        
+      
+                
+
+        
+     
+
+        
+      
+            <a href="/create">Create my player</a>
+      
+
     </div>
 
 </body>

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"><!-- bootstrap css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/loginreg.css') }}">
-    <title>Document</title>
+    <title>PlayerPage - Create Player</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-3">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
         <div class="collapse navbar-collapse" id="nav_collapse">
@@ -22,23 +23,36 @@
         </button>
             
     </nav>
-    <form action="/create/new" method="post">
-        <label for="name">name</label>
-        <input type="text" name="name">
-        <label for="position">position</label>
-        <input type="text" name="position">
-        <label for="school">school</label>
-        <input type="text" name="school" >
-        <label for="top_strength">bench press</label>
-        <input type="number" name="top_strength">
-        <label for="bottom strength">squat</label>
-        <input type="number" name="bottom_strength">
-        <label for="speed">what is your 40 yard dash time</label>
-        <input type="number" name="speed" step="any">
+    <!-- football backgroung -->
+    <!-- <style>
+        body {
+            background-image: url('/static/img/field.png');
+            background-size: cover;
+            height: 100vh;
+            background-position: center; /* Adjust as needed */
+            /* Additional CSS properties */
+        }
+    </style> -->
+    <div class="mt-5 pt-5">
+        <form action="/create/new" method="post">
+            <label for="name">name</label>
+            <input type="text" name="name">
+            <label for="position">position</label>
+            <input type="text" name="position">
+            <label for="school">school</label>
+            <input type="text" name="school" >
+            <label for="top_strength">bench press</label>
+            <input type="number" name="top_strength">
+            <label for="bottom strength">squat</label>
+            <input type="number" name="bottom_strength">
+            <label for="speed">what is your 40 yard dash time</label>
+            <input type="number" name="speed" step="any">
 
-        <input type="hidden" name="user_id" value="{{session['user_id']}}">
+            <input type="hidden" name="user_id" value="{{session['user_id']}}">
 
-        <input type="submit">
-    </form>
+            <input type="submit">
+        </form>
+    </div>
+    
 </body>
 </html>
