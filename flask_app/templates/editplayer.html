@@ -25,23 +25,23 @@
     </nav>
     <div class="container mt-5 pt-5">
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
-            {%for initial_attribute in attribute_set%}
+            
             <label for="name">name</label>
-            <input type="text" name="name" value='{{initial_attribute.first_name}}'>
+            <input type="text" name="name" value='{{player.name}}'>
             <label for="position">position</label>
-            <input type="text" name="position" value="{{initial_attribute.position}}">
+            <input type="text" name="position" value="{{player.position}}">
             <label for="school">school</label>
-            <input type="text" name="school" value="{{initial_attribute.school}}">
+            <input type="text" name="school" value="{{player.school}}">
             <label for="top_strength">bench press</label>
-            <input type="number" name="top_strength" value="{{initial_attribute.top_strength}}">
+            <input type="number" name="top_strength" value="{{player.top_strength}}">
             <label for="bottom strength">squat</label>
-            <input type="number" name="bottom_strength" value="{{initial_attribute.top_strength}}">
+            <input type="number" name="bottom_strength" value="{{player.top_strength}}">
             <label for="speed">what is your 40 yard dash time</label>
-            <input type="number" name="speed" step="any">
+            <input type="number" name="speed" step="any" value="{{player.speed}}">
             
         
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
-        {%endfor%}
+        
             <input type="submit">
         </form>
     </div>
