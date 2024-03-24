@@ -39,7 +39,7 @@
         <ul class="list-group list-group-flush">
                 {% if players %}
                     {% for player in players %}
-                        <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a></li>
+                        <li class="list-group-item"><a href="/playerspage/{{player.user_id}}">{{player.name}}</a> {{player.school}}</li>
                     {% endfor %}
                 {% else %}
                     <p class="bg-info">No players found</p>
