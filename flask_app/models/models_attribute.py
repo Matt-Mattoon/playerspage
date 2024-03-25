@@ -31,10 +31,10 @@ class Attribute:
                 WHERE user_id = %(id)s
                 """
         results = connectToMySQL(db).query_db(query, data)
-        print(results)
-        player = cls(results[0])
-        print(player)
-        return player
+        attributes = []
+        for attribute in results:
+            attributes.append(attribute)
+        return attributes
     
     @classmethod
     def get_all(cls): # create a list of Attribute instances and return it
