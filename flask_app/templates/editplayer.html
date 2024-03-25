@@ -25,7 +25,7 @@
     </nav>
     <div class="container mt-5 pt-5">
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
-            
+            {%for player in player%}
             <label for="name">name</label>
             <input type="text" name="name" value='{{player.name}}'>
             <label for="position">position</label>
@@ -38,7 +38,7 @@
             <input type="number" name="bottom_strength" value="{{player.top_strength}}">
             <label for="speed">what is your 40 yard dash time</label>
             <input type="number" name="speed" step="any" value="{{player.speed}}">
-            
+            {%endfor%}
         
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
         
