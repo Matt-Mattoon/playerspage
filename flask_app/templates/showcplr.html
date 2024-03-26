@@ -48,7 +48,7 @@
                     <p>Speed: {{player.speed}} &#127939;</p>
                 </div>
                 {% if player.user_id == session['user_id'] %}
-                    <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark">Edit Player</a>
+                    <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark me-3">Edit Player</a>
                 {% endif %}
             {%endfor%}
             <a href="/playerspage/{{player.id}}/log">Player log</a>

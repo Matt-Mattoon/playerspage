@@ -34,7 +34,7 @@
         }
     </style> -->
     <div class="mt-5 pt-5">
-        <h1>log in</h1>
+    
         {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="alert alert-danger" role="alert">
@@ -46,17 +46,17 @@
             {% endif %}
         {% endwith %}
         <form action="/create/new" method="post">
-            <label for="name">name</label>
+            <label for="name">Name</label>
             <input type="text" name="name">
-            <label for="position">position</label>
+            <label for="position">Position</label>
             <input type="text" name="position">
-            <label for="school">school</label>
+            <label for="school">School</label>
             <input type="text" name="school" >
-            <label for="top_strength">bench press</label>
+            <label for="top_strength">Bench Press</label>
             <input type="number" name="top_strength">
-            <label for="bottom strength">squat</label>
+            <label for="bottom strength">Squat</label>
             <input type="number" name="bottom_strength">
-            <label for="speed">what is your 40 yard dash time</label>
+            <label for="speed">What is your 40 yard dash time</label>
             <input type="number" name="speed" step="any">
 
             <input type="hidden" name="user_id" value="{{session['user_id']}}">

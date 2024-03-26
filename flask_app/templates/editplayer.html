@@ -39,17 +39,17 @@
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
 
             {%for player in player%}
-                <label for="name">name</label>
+                <label for="name">Name</label>
                 <input type="text" name="name" value='{{player.name}}'>
-                <label for="position">position</label>
+                <label for="position">Position</label>
                 <input type="text" name="position" value="{{player.position}}">
-                <label for="school">school</label>
+                <label for="school">School</label>
                 <input type="text" name="school" value="{{player.school}}">
-                <label for="top_strength">bench press</label>
+                <label for="top_strength">Bench Press</label>
                 <input type="number" name="top_strength" value="{{player.top_strength}}">
-                <label for="bottom strength">squat</label>
+                <label for="bottom strength">Squat</label>
                 <input type="number" name="bottom_strength" value="{{player.top_strength}}">
-                <label for="speed">what is your 40 yard dash time</label>
+                <label for="speed">What is your 40 yard dash time</label>
                 <input type="number" name="speed" step="any" value="{{player.speed}}">
 
                 <input type="hidden" name="attribute_id" value="{{player.id}}">
