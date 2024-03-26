@@ -57,7 +57,6 @@ def show_log(player_id):
     data = {'attribute_id' : player_id}
     print('show player log', data)
     log = Log.get_log(data)
-    print('log route query returned', log)
     return render_template('log.html', log = log)
 
 # Edit player - get form
