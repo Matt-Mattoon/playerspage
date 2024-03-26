@@ -1,6 +1,7 @@
 db = 'athletes'
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash #type:ignore
+from flask_app.models import models_log
 
 class Attribute:
     def __init__(self, data):
@@ -22,7 +23,9 @@ class Attribute:
         insert into attributes (name, school, position, top_strength, bottom_strength, speed, user_id) 
         values (%(name)s, %(school)s, %(position)s, %(top_strength)s, %(bottom_strength)s, %(speed)s, %(user_id)s)
         '''
-        return connectToMySQL(db).query_db(query, data)
+        results = connectToMySQL(db).query_db(query, data) # returns attribute id
+        models_log.Log.create_log(data, results) # create log 
+        return results
     
     @classmethod
     def get_one(cls, data):
@@ -32,8 +35,9 @@ class Attribute:
                 """
         results = connectToMySQL(db).query_db(query, data)
         attributes = []
-        for attribute in results:
-            attributes.append(attribute)
+        if results:
+            for attribute in results:
+                attributes.append(attribute)
         return attributes
     
     @classmethod
@@ -54,7 +58,39 @@ class Attribute:
         return connectToMySQL(db).query_db(query, data)
     
     @classmethod
-    def delete(cls, user_id):
-        data = {'user_id' : user_id}
-        query = 'DELETE FROM attributes WHERE user_id = %(user_id)s'
+    def delete(cls, id):
+        data = {'id' : id}
+        query = 'DELETE FROM attributes WHERE id = %(id)s'
         return connectToMySQL(db).query_db(query, data)
+    
+    @staticmethod
+    def player_validation(data):
+        is_valid = True
+        if len(data['name']) < 2:
+            is_valid = False
+            flash('Name must be at least 2 letters.')
+        if len(data['position']) < 2:
+            is_valid = False
+            flash('Position must be at least 2 letters.')
+        if len(data['school']) < 2:
+            is_valid = False
+            flash('School must be at least 2 letters.')
+        if data['top_strength'] == '':
+            is_valid = False
+            flash('Bench Press must be more than 0.')
+        elif int(data['top_strength']) < 1:
+            is_valid = False
+            flash('Bench Press must be more than 0.')
+        if data['bottom_strength'] == '':
+            is_valid = False
+            flash('Squat must be more than 0.')
+        elif int(data['bottom_strength']) < 1:
+            is_valid = False
+            flash('Squat must be more than 0.')
+        if data['speed'] == '':
+            is_valid = False
+            flash('Speed must be more than 0.')
+        elif int(data['speed']) < 1:
+            is_valid = False
+            flash('Speed must be more than 0.')
+        return is_valid

@@ -23,31 +23,38 @@
         </button>
             
     </nav>
-    <div class="container mt-3 pt-5">
+    <div class="container mt-5 pt-5">
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Edit Player</h4>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>&#128581 Invalid, try again!</strong>
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
-<<<<<<< HEAD
-            
-            <label for="name">Name</label>
-=======
+
             {%for player in player%}
-            <label for="name">name</label>
->>>>>>> cff0dfea33628fd2b433d42e322ad03e77a5f0fc
-            <input type="text" name="name" value='{{player.name}}'>
-            <label for="position">Position</label>
-            <input type="text" name="position" value="{{player.position}}">
-            <label for="school">School</label>
-            <input type="text" name="school" value="{{player.school}}">
-            <label for="top_strength">Bench Press</label>
-            <input type="number" name="top_strength" value="{{player.top_strength}}">
-            <label for="bottom strength">Squat</label>
-            <input type="number" name="bottom_strength" value="{{player.top_strength}}">
-            <label for="speed">What is your 40 yard dash time</label>
-            <input type="number" name="speed" step="any" value="{{player.speed}}">
+                <label for="name">name</label>
+                <input type="text" name="name" value='{{player.name}}'>
+                <label for="position">position</label>
+                <input type="text" name="position" value="{{player.position}}">
+                <label for="school">school</label>
+                <input type="text" name="school" value="{{player.school}}">
+                <label for="top_strength">bench press</label>
+                <input type="number" name="top_strength" value="{{player.top_strength}}">
+                <label for="bottom strength">squat</label>
+                <input type="number" name="bottom_strength" value="{{player.top_strength}}">
+                <label for="speed">what is your 40 yard dash time</label>
+                <input type="number" name="speed" step="any" value="{{player.speed}}">
+
+                <input type="hidden" name="attribute_id" value="{{player.id}}">
             {%endfor%}
-        
-        <input type="hidden" name="user_id" value="{{session['user_id']}}">
-        
+            <input type="hidden" name="user_id" value="{{session['user_id']}}">
             <input type="submit">
         </form>
         <div class="d-flex bg-secondary">
