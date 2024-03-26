@@ -56,7 +56,7 @@ def show_log(player_id):
         return render_template('loginreg.html')
     data = {'attribute_id' : player_id}
     log = Log.get_log(data)
-    return render_template('showcplr.html', log = log)
+    return render_template('log.html', log = log)
 
 # Edit player - get form
 @app.route('/playerspage/edit/<int:id>')
