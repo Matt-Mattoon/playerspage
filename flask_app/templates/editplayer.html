@@ -23,20 +23,21 @@
         </button>
             
     </nav>
-    <div class="container mt-5 pt-5">
+    <div class="container mt-3 pt-5">
+        <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Edit Player</h4>
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
             
-            <label for="name">name</label>
+            <label for="name">Name</label>
             <input type="text" name="name" value='{{player.name}}'>
-            <label for="position">position</label>
+            <label for="position">Position</label>
             <input type="text" name="position" value="{{player.position}}">
-            <label for="school">school</label>
+            <label for="school">School</label>
             <input type="text" name="school" value="{{player.school}}">
-            <label for="top_strength">bench press</label>
+            <label for="top_strength">Bench Press</label>
             <input type="number" name="top_strength" value="{{player.top_strength}}">
-            <label for="bottom strength">squat</label>
+            <label for="bottom strength">Squat</label>
             <input type="number" name="bottom_strength" value="{{player.top_strength}}">
-            <label for="speed">what is your 40 yard dash time</label>
+            <label for="speed">What is your 40 yard dash time</label>
             <input type="number" name="speed" step="any" value="{{player.speed}}">
             
         
@@ -44,11 +45,15 @@
         
             <input type="submit">
         </form>
+        <div class="d-flex bg-secondary">
+            <h4 class="me-4">Danger Zone</h4>
+            <a class="btn btn-outline-danger " href="/playerspage/{{session['user_id']}}/delete" role="button">Delete Player</a>
+        </div>
     </div>
-    <div class="p-3 d-flex bg-secondary">
+    <!-- <div class="p-3 d-flex bg-secondary">
         <h4 class="justify-content-center border-bottom border-danger border-2">Danger Zone</h4>
-        <a class="justify-content-center btn btn-outline-danger" href="/playerspage/{{session['user_id']}}/delete" role="button">Delete Player</a>
-    </div>
+        <a class="justify-content-center btn btn-outline-danger " href="/playerspage/{{session['user_id']}}/delete" role="button">Delete Player</a>
+    </div> -->
     
 </body>
 </html>
