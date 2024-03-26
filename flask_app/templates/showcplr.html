@@ -38,19 +38,20 @@
     <div class="set mt-5 pt-5">
         
         {% if player %}
-        {%for player in player%}
-            <p>Name: {{player.name}}</p>
-            <p>Position: {{player.position}}</p>
-            <p>School: {{player.school}}</p>
-            <div class="bottomhf">
-                <p>Top Strength: {{player.top_strength}} Lbs. &#127947;</p>
-                <p>Bottom Strength: {{player.bottom_strength}} Lbs. &#127947;</p>
-                <p>Speed: {{player.speed}} &#127939;</p>
-            </div>
-            {% if player.user_id == session['user_id'] %}
-            <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark">Edit Player</a>
-            {% endif %}
+            {%for player in player%}
+                <p>Name: {{player.name}}</p>
+                <p>Position: {{player.position}}</p>
+                <p>School: {{player.school}}</p>
+                <div class="bottomhf">
+                    <p>Top Strength: {{player.top_strength}} Lbs. &#127947;</p>
+                    <p>Bottom Strength: {{player.bottom_strength}} Lbs. &#127947;</p>
+                    <p>Speed: {{player.speed}} &#127939;</p>
+                </div>
+                {% if player.user_id == session['user_id'] %}
+                    <a href="/playerspage/edit/{{session['user_id']}}" class="text-dark me-3">Edit Player</a>
+                {% endif %}
             {%endfor%}
+            <a href="/playerspage/{{player.id}}/log">Player log</a>
         {% else%}
             <a href="/create" class="p-2 text-dark">Create my player</a>
         {% endif %}
