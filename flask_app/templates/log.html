@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"><!-- bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- bootstrap css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/loginreg.css') }}">
     <title>PlayersPage - Log</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
         <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
@@ -16,11 +19,12 @@
                 <a href="/logout" class="nav-link">logout</a>
             </div>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav_collapse" aria-controls="nav_collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav_collapse"
+            aria-controls="nav_collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    <div class="container pt-5">
+    <!-- <div class="container pt-5">
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Log</h4>
         <ul class="list-group list-group-flush">
                 {% if log %}
@@ -33,7 +37,47 @@
                     <p class="bg-info">No players found</p>
                 {% endif %}
         </ul>
+    </div> -->
+
+
+    <div class="container pt-5">
+        <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Log</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>School</th>
+                        <th>Position</th>
+                        <th>Bench</th>
+                        <th>Squat</th>
+                        <th>Speed</th>
+                        <th>Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if log %}
+                    {% for entry in log %}
+                    <tr>
+                        <td>{{entry.name}}</td>
+                        <td>{{entry.school}}</td>
+                        <td>{{entry.position}}</td>
+                        <td>{{entry.top_strength}}</td>
+                        <td>{{entry.bottom_strength}}</td>
+                        <td>{{entry.speed}}</td>
+                        <td>{{entry.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">No changes found</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>
+
 </html>
