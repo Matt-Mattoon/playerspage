@@ -46,17 +46,19 @@ def show_player(id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
     data = {'id':id}
-    player = Attribute.get_one(data)
+    player = Attribute.get_one(data) #returns a single class instance
     return render_template('showcplr.html', player = player)
 
 #Show player log - get
-@app.route('/playerspage/<int:id>/log')
+@app.route('/playerspage/<int:player_id>/log')
 def show_log(player_id):
     if 'user_id' not in session:
         return render_template('loginreg.html')
     data = {'attribute_id' : player_id}
+    print('show player log', data)
     log = Log.get_log(data)
-    return render_template('showcplr.html', log = log)
+    print('log route query returned', log)
+    return render_template('log.html', log = log)
 
 # Edit player - get form
 @app.route('/playerspage/edit/<int:id>')
@@ -97,7 +99,7 @@ def delete_player(user_id):
     elif user_id != session['user_id']: # protect against db calls from URL
         return redirect('/')
     player = Attribute.get_one({'id' : user_id})
-    player_id = player[0]['id']
+    player_id = player.id
     print(player)
     Attribute.delete(player_id)
     return redirect(f'/playerspage/{session["user_id"]}')

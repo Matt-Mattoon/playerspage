@@ -10,20 +10,20 @@ class Log: # Meant to mirror the Attribute class
         self.speed = data['speed']
         self.top_strength = data['top_strength']
         self.bottom_strength = data['bottom_strength']
-        self.user_id = data['user_id']
+        # self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.log_id = data['id']
 
     @classmethod
     def get_log(cls, player_id):
-        query = 'SELECT * FROM attributes_log WHERE attribute_id = %(player_id)s'
+        query = 'SELECT * FROM attributes_log WHERE attribute_id = %(attribute_id)s'
         results = connectToMySQL(db).query_db(query, player_id)
+        print('get_log method query returned', results)
         if results: 
             log = []
             for entry in results:
-                cls(entry)
-                log.append(entry)
+                log.append(cls(entry))
             return log
         return
     

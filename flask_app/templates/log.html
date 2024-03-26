@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"><!-- bootstrap css -->
+    <title>PlayersPage - log</title>
 </head>
 <body>
-    <h1>Welcome to the Jungle</h1>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top p-2">
+        <a href="/" class="navbar-brand mb-0 h1">PlayersPage</a>
+        <div class="collapse navbar-collapse" id="nav_collapse">
+            <div class="navbar-nav ms-auto">
+                <a href="/playerspage/{{session['user_id']}}" class="nav-link">Profile</a>
+                <a href="/logout" class="nav-link">logout</a>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav_collapse" aria-controls="nav_collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container pt-5">
+        <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Players Log</h4>
+        <ul class="list-group list-group-flush">
+                {% if log %}
+                    <li class="list-group-item"> Name | School | Position | Bench | Squat | Speed | Updated </li>
+                    {% for entry in log %}
+                        <li class="list-group-item"> {{entry.name}} | {{entry.school}} | {{entry.position}} | {{entry.top_strength}} | {{entry.bottom_strength}} | {{entry.speed}} | {{entry.created_at}}</li>
+                        
+                    {% endfor %}
+                {% else %}
+                    <p class="bg-info">No players found</p>
+                {% endif %}
+        </ul>
+    </div>
+
 </body>
 </html>

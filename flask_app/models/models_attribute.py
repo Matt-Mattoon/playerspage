@@ -34,11 +34,9 @@ class Attribute:
                 WHERE user_id = %(id)s
                 """
         results = connectToMySQL(db).query_db(query, data)
-        attributes = []
         if results:
-            for attribute in results:
-                attributes.append(attribute)
-        return attributes
+            return cls(results[0])
+        return
     
     @classmethod
     def get_all(cls): # create a list of Attribute instances and return it
@@ -90,7 +88,7 @@ class Attribute:
         if data['speed'] == '':
             is_valid = False
             flash('Speed must be more than 0.')
-        elif int(data['speed']) < 1:
+        elif float(data['speed']) < 1:
             is_valid = False
             flash('Speed must be more than 0.')
         return is_valid
