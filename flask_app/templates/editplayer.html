@@ -26,8 +26,13 @@
     <div class="container mt-3 pt-5">
         <h4 class="mt-5 mb-2 pb-2 border-bottom border-black border-2">Edit Player</h4>
         <form action="/playerspage/update/{{session['user_id']}}" method="post">
+<<<<<<< HEAD
             
             <label for="name">Name</label>
+=======
+            {%for player in player%}
+            <label for="name">name</label>
+>>>>>>> cff0dfea33628fd2b433d42e322ad03e77a5f0fc
             <input type="text" name="name" value='{{player.name}}'>
             <label for="position">Position</label>
             <input type="text" name="position" value="{{player.position}}">
@@ -39,7 +44,7 @@
             <input type="number" name="bottom_strength" value="{{player.top_strength}}">
             <label for="speed">What is your 40 yard dash time</label>
             <input type="number" name="speed" step="any" value="{{player.speed}}">
-            
+            {%endfor%}
         
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
         

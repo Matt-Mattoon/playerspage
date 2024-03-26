@@ -79,5 +79,5 @@ def delete_player(user_id):
     elif user_id != session['user_id']: # protect against db calls from URL
         return redirect('/')
     Attribute.delete(user_id)
-    return redirect(f'/playerspage/{session['user_id']}')
+    return redirect(f'/playerspage/{session["user_id"]}')
 
